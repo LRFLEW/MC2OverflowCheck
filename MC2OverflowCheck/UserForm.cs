@@ -32,22 +32,22 @@ namespace MC2OverflowCheck
             switch (result)
             {
                 case CheckZip.EvalResult.Incompatible:
-                    lblMessage.Text = "This archive is not compatible with the game - either ";
+                    lblMessage.Text = "This Zip file is not compatible with the game's Zip support.";
                     return;
                 case CheckZip.EvalResult.Invalid:
-                    lblMessage.Text = "This ZIP does not follow the ISO Standard for Zip, and so the game will not load it.";
+                    lblMessage.Text = "This file does not appear to be a valid Zip file.";
                     return;
                 case CheckZip.EvalResult.Optimized:
-                    lblMessage.Text = "This is the default archive that comes with the game. It is safe.";
+                    lblMessage.Text = "This file is an Optimized Archive (.dat).";
                     return;
                 case CheckZip.EvalResult.Unsafe:
-                    lblMessage.Text = "This Archive WILL execute arbitrary code if you load it in the game.";
+                    lblMessage.Text = "This Archive WILL overflow the buffer, and may execute code.";
                     lblMessage.ForeColor = Color.Red;
                     lblMessage.BackColor = Color.Black;
                     lblMessage.Font = new Font(lblMessage.Font.Name, lblMessage.Font.Size+ 5, FontStyle.Bold);
                     return;
                 case CheckZip.EvalResult.Valid:
-                    lblMessage.Text = "This Archive is most likely safe to use in the game, and should work in the game.";
+                    lblMessage.Text = "This Archive is safe to use in the game.";
                     return;
             }
         }

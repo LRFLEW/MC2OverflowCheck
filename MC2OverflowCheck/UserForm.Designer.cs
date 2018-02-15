@@ -59,7 +59,8 @@
             // OpenZip
             // 
             this.OpenZip.FileName = "assets_p";
-            this.OpenZip.Filter = "Zip File|*.zip|Assets File|*.dat";
+            this.OpenZip.Filter = "Any File|*.*|Zip File|*.zip|Assets File|*.dat|Any Archive|*zip;*.dat";
+            this.OpenZip.FilterIndex = 4;
             // 
             // lblMessage
             // 
