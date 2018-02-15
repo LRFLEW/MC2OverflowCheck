@@ -36,6 +36,7 @@ namespace MC2OverflowCheck
             if (count != FromLittle16(data, 10)) return EvalResult.Incompatible;
             long offset = FromLittle32(data, 16);
 
+            EvalResult result = EvalResult.Valid;
             for (UInt16 i = 0; i < count; ++i)
             {
                 file.Seek(offset, SeekOrigin.Begin);
@@ -48,26 +49,28 @@ namespace MC2OverflowCheck
                 if (nameLen >= 0x100 || extraLen > 0x100 || commentLen > 0x100) return EvalResult.Unsafe;
 
                 UInt16 compression = FromLittle16(data, 10);
-                if (compression != 0 && compression != 8) return EvalResult.Incompatible;
+                if (compression != 0 && compression != 8) result = EvalResult.Incompatible;
                 UInt32 compressedSize = FromLittle32(data, 20);
                 UInt32 uncompressedSize = FromLittle32(data, 24);
-                if (compression == 0 && compressedSize != uncompressedSize) return EvalResult.Invalid;
-                else if (compression == 8 && compressedSize >= uncompressedSize) return EvalResult.Incompatible;
+                if (compression == 0 && compressedSize != uncompressedSize) result = EvalResult.Invalid;
+                else if (compression == 8 && compressedSize >= uncompressedSize) result = Max(result, EvalResult.Incompatible);
 
                 long localOffset = FromLittle32(data, 42);
                 file.Seek(localOffset, SeekOrigin.Begin);
                 read = file.Read(data, 0, 30);
-                if (read != 30 || data[0] != 'P' || data[1] != 'K' || data[2] != 3 || data[3] != 4) return EvalResult.Invalid;
-                else if (FromLittle16(data, 26) != nameLen) return EvalResult.Invalid;
-                else if (FromLittle16(data, 28) != 0) return EvalResult.Incompatible;
+                if (read != 30 || data[0] != 'P' || data[1] != 'K' || data[2] != 3 || data[3] != 4) result = EvalResult.Invalid;
+                else if (FromLittle16(data, 26) != nameLen) result = EvalResult.Invalid;
+                else if (FromLittle16(data, 28) != 0) result = Max(result, EvalResult.Incompatible);
 
                 offset += 46 + nameLen + extraLen + commentLen;
             }
 
+            if (result != EvalResult.Valid) return result;
+
             // MC2 handles the end of central directory strangly, so here's a check to make sure it won't get confused
             file.Seek(offset, SeekOrigin.Begin);
             read = file.Read(data, 0, 4);
-            if (read < 4 || (data[0] == 'P' && data[1] == 'K' && data[2] == 1 && data[3] == 2)) return EvalResult.Incompatible;
+            if (read >=4 && data[0] == 'P' && data[1] == 'K' && data[2] == 1 && data[3] == 2) return EvalResult.Incompatible;
 
             return EvalResult.Valid;
         }
@@ -98,6 +101,8 @@ namespace MC2OverflowCheck
                 return (UInt16)(((result >> 8) & 0x00FF) | ((result << 8) & 0xFF00));
             }
         }
+
+        private static EvalResult Max(EvalResult a, EvalResult b) => a < b ? b : a;
 
     }
 }
