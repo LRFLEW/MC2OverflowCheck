@@ -33,7 +33,6 @@
             this.OpenZip = new System.Windows.Forms.OpenFileDialog();
             this.lblMessage = new System.Windows.Forms.Label();
             this.btnAboutThisExploit = new System.Windows.Forms.Button();
-            this.btnSample = new System.Windows.Forms.Button();
             this.btnAuthors = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -81,16 +80,6 @@
             this.btnAboutThisExploit.UseVisualStyleBackColor = true;
             this.btnAboutThisExploit.Click += new System.EventHandler(this.btnAboutThisExploit_Click);
             // 
-            // btnSample
-            // 
-            this.btnSample.Location = new System.Drawing.Point(204, 12);
-            this.btnSample.Name = "btnSample";
-            this.btnSample.Size = new System.Drawing.Size(94, 23);
-            this.btnSample.TabIndex = 4;
-            this.btnSample.Text = "Get Sample Zip";
-            this.btnSample.UseVisualStyleBackColor = true;
-            this.btnSample.Click += new System.EventHandler(this.btnSample_Click);
-            // 
             // btnAuthors
             // 
             this.btnAuthors.Location = new System.Drawing.Point(508, 12);
@@ -107,7 +96,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(595, 88);
             this.Controls.Add(this.btnAuthors);
-            this.Controls.Add(this.btnSample);
             this.Controls.Add(this.btnAboutThisExploit);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblPath);
@@ -127,7 +115,6 @@
         private System.Windows.Forms.OpenFileDialog OpenZip;
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Button btnAboutThisExploit;
-        private System.Windows.Forms.Button btnSample;
         private System.Windows.Forms.Button btnAuthors;
     }
 }

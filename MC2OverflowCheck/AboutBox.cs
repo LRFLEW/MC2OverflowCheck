@@ -26,5 +26,17 @@ namespace MC2OverflowCheck
         {
             Process.Start("https://github.com/Krutonium/");
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AboutBox_Load(object sender, EventArgs e)
+        {
+            this.Icon = Properties.Resources.overflow_uIn_icon;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+        }
     }
 }
