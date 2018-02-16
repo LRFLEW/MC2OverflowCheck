@@ -101,7 +101,7 @@
             this.Controls.Add(this.lblPath);
             this.Controls.Add(this.cmdChooseZip);
             this.Name = "UserForm";
-            this.Text = "Midnight Club 2 Assets Archive Checker";
+            this.Text = "Midnight Club 2 Overflow Checker";
             this.Load += new System.EventHandler(this.UserForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
