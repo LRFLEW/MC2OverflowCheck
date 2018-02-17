@@ -5,6 +5,8 @@ buffers in Midnight Club 2 for loading game assets. The buffer overflow in
 Midnight Club 2 can be used to run malicious code on your system. This program
 can be used to safely scan any mod files before loading them into the game.
 
+You can read more about the exploit at [About The Exploit](https://github.com/LRFLEW/MC2OverflowCheck/wiki/About+the+Exploit).
+
 ## Running
 
 ### Requirements
