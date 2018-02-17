@@ -1,0 +1,17 @@
+version: 1.0#{build}
+image: Visual Studio 2017
+configuration: Release
+build:
+  verbosity: minimal
+after_build:
+- cmd: 7z a MC2OverflowCheck.zip .\MC2OverflowCheck\bin\Release\MC2OverflowCheck.exe
+artifacts:
+- path: MC2OverflowCheck.zip
+  name: MC2OverflowCheck.zip
+deploy:
+- provider: GitHub
+  auth_token:
+    secure: US2B1AJBegrxUhjKUfbocWUqavl636DxnaUnl8a7/waGexpd5Dp/mN6JBZIS+6Ee
+  artifact: MC2OverflowCheck.zip
+  on:
+    appveyor_repo_tag: true
