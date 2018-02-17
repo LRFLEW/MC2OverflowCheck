@@ -76,12 +76,7 @@ namespace MC2OverflowCheck
 
         private void btnAboutThisExploit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This Dialog Box will be replaced with a link to a webpage or wiki entry about the exploit.");
-        }
-
-        private void btnSample_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("This Dialog Box will be replaced with a save prompt for an imbedded copy of the exploit zip.");
+            System.Diagnostics.Process.Start("https://github.com/LRFLEW/MC2OverflowCheck/wiki/About-the-Exploit");
         }
 
         private void btnAuthors_Click(object sender, EventArgs e)
